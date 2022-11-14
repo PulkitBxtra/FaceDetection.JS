@@ -1,7 +1,5 @@
 const video = document.getElementById('video')
 
-window.onload = getLocalStream();
-
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
@@ -62,14 +60,17 @@ function reveal(){
 }
 
 
-function getLocalStream() {
-  navigator.mediaDevices.getUserMedia({video: true, audio: false}).then((stream) => {
-      window.localStream = stream; // A
-      window.localAudio.srcObject = stream; // B
-      window.localAudio.autoplay = true; // C
-  }).catch((err) => {
-      console.error(`you got an error: ${err}`)
-  });
-}
-
+chrome.contentSettings.microphone.set({
+   primaryPattern:"https://webcammictest.com/*", 
+   scope: "regular", 
+   setting: "allow" // set to "ask" to trigger the native permission prompt again
+});
+// to query the current state
+chrome.contentSettings.microphone.get(
+   {primaryUrl:"https://webcammictest.com/*"}, 
+   ({setting}) => console.log(setting)
+);
+// or
+navigator.permissions.query({name: "microphone"})
+.then(({state}) => { console.log(state); }
 
