@@ -54,7 +54,7 @@ video.addEventListener('play', () => {
 
 
 
-// function reveal(){
-//   document.getElementById('levels').innerText=`Focus:${Detected} Unfocus:${NotDetected}`;
-//   console.log(`${Detected} ${NotDetected}`)
-// }
+function reveal(){
+  document.getElementById('levels').innerText=`Focus:${Detected} Unfocus:${NotDetected}`;
+  console.log(`${Detected} ${NotDetected}`)
+}
