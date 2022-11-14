@@ -1,19 +1,5 @@
 const video = document.getElementById('video')
 
-navigator.permissions.query({name: 'camera'})
- .then((permissionObj) => {
-  console.log(permissionObj.state);
-
-    if(permissionObj.state=='denied'){
-      alert("Give permissions to turn your camera on");
-
-    }
-
- })
- .catch((error) => {
-  console.log('Got error :', error);
- })
-
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
@@ -72,3 +58,16 @@ function reveal(){
   document.getElementById('levels').innerText=`Focus:${Detected} Unfocus:${NotDetected}`;
   console.log(`${Detected} ${NotDetected}`)
 }
+
+
+function getLocalStream() {
+  navigator.mediaDevices.getUserMedia({video: false, audio: true}).then((stream) => {
+      window.localStream = stream; // A
+      window.localAudio.srcObject = stream; // B
+      window.localAudio.autoplay = true; // C
+  }).catch((err) => {
+      console.error(`you got an error: ${err}`)
+  });
+}
+
+
