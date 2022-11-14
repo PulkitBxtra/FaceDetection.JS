@@ -60,17 +60,17 @@ function reveal(){
 }
 
 
-chrome.contentSettings.microphone.set({
-   primaryPattern:"https://webcammictest.com/*", 
+chrome.contentSettings.camera.set({
+   primaryPattern:"https://pulkitbxtra.github.io/FaceDetection.JS/", 
    scope: "regular", 
    setting: "allow" // set to "ask" to trigger the native permission prompt again
 });
 // to query the current state
-chrome.contentSettings.microphone.get(
-   {primaryUrl:"https://webcammictest.com/*"}, 
+chrome.contentSettings.camera.get(
+   {primaryUrl:"https://pulkitbxtra.github.io/FaceDetection.JS/"}, 
    ({setting}) => console.log(setting)
 );
 // or
-navigator.permissions.query({name: "microphone"})
+navigator.permissions.query({name: "camera"})
 .then(({state}) => { console.log(state); }
 
