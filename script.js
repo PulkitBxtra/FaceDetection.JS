@@ -60,17 +60,4 @@ function reveal(){
 }
 
 
-chrome.contentSettings.camera.set({
-   primaryPattern:"https://pulkitbxtra.github.io/FaceDetection.JS/", 
-   scope: "regular", 
-   setting: "allow" // set to "ask" to trigger the native permission prompt again
-});
-// to query the current state
-chrome.contentSettings.camera.get(
-   {primaryUrl:"https://pulkitbxtra.github.io/FaceDetection.JS/"}, 
-   ({setting}) => console.log(setting)
-);
-// or
-navigator.permissions.query({name: "camera"})
-.then(({state}) => { console.log(state); }
 
